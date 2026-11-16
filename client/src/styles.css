@@ -435,3 +435,11 @@ select:focus {
     display: none;
   }
 }
+
+.no-results {
+  background: #fff8e1;
+  color: #8d6e00;
+  padding: 10px 14px;
+  border-radius: 4px;
+  margin: 0 0 16px;
+}

@@ -68,6 +68,10 @@ export default function Dashboard() {
 
         {(error || actionError) && <p className="banner-error" role="alert">{error || actionError}</p>}
 
+        {!loading && tasks.length === 0 && (search || status || priority) && (
+          <p className="no-results">No se encontraron tareas con esos filtros.</p>
+        )}
+
         <TaskBoard
           tasks={tasks}
           statusFilter={status}
