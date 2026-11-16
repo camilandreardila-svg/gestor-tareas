@@ -26,6 +26,11 @@ export default function TaskCard({ task, onToggleComplete, onChangeStatus, onEdi
         {due === 'vencida' && ' (vencida)'}
         {due === 'hoy' && ' (hoy)'}
       </p>
+      {done && task.completed_at && (
+        <p className="task-date">
+          ✔ Completada el {new Date(task.completed_at).toLocaleDateString('es-CO', { day: 'numeric', month: 'short' })}
+        </p>
+      )}
 
       <div className="task-footer">
         <select value={task.status} onChange={(e) => onChangeStatus(task, e.target.value)} aria-label="Estado">
