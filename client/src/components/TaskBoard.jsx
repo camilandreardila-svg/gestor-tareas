@@ -9,18 +9,15 @@ export default function TaskBoard({ tasks, statusFilter, ...handlers }) {
       {columns.map((status) => {
         const items = tasks.filter((t) => t.status === status);
         return (
-          <section key={status} className={`column column-${status}`} aria-label={STATUS[status].label}>
-            <header className="column-head">
-              <h2>{STATUS[status].label}</h2>
-              <span className="count">{items.length}</span>
-            </header>
-            <div className="column-body">
-              {items.length === 0 ? (
-                <p className="empty">Sin tareas aquí.</p>
-              ) : (
-                items.map((task) => <TaskCard key={task.id} task={task} {...handlers} />)
-              )}
-            </div>
+          <section key={status} className={`column col-${status}`}>
+            <h2 className="column-title">
+              {STATUS[status].label} <span>({items.length})</span>
+            </h2>
+            {items.length === 0 ? (
+              <p className="empty">No hay tareas</p>
+            ) : (
+              items.map((task) => <TaskCard key={task.id} task={task} {...handlers} />)
+            )}
           </section>
         );
       })}

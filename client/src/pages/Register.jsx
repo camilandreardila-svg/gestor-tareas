@@ -57,7 +57,7 @@ export default function Register() {
         </div>
         {error && <p className="form-error" role="alert">{error}</p>}
         <button className="btn btn-primary btn-block" disabled={busy}>
-          {busy ? 'Creando cuenta…' : 'Crear cuenta'}
+          {busy ? 'Creando cuenta...' : 'Crear cuenta'}
         </button>
       </form>
     </AuthLayout>

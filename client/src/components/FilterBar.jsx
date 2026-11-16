@@ -5,12 +5,11 @@ export default function FilterBar({ search, onSearch, status, onStatus, priority
   return (
     <div className="filters" role="search">
       <div className="search">
-        <span className="search-icon" aria-hidden="true">⌕</span>
         <input
           type="search"
           value={search}
           onChange={(e) => onSearch(e.target.value)}
-          placeholder="Buscar por título o descripción…"
+          placeholder="Buscar tarea..."
           aria-label="Buscar tareas"
         />
       </div>
@@ -27,7 +26,7 @@ export default function FilterBar({ search, onSearch, status, onStatus, priority
         ))}
       </select>
       {active && (
-        <button className="btn btn-ghost btn-sm" onClick={onClear}>Limpiar filtros</button>
+        <button className="link-btn" onClick={onClear}>Quitar filtros</button>
       )}
     </div>
   );

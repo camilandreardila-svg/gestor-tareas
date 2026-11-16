@@ -36,11 +36,11 @@ export default function TaskForm({ initial, onSubmit, onCancel }) {
     <form className="form" onSubmit={handleSubmit} noValidate>
       <label className="field">
         <span>Título *</span>
-        <input value={values.title} onChange={set('title')} maxLength={150} autoFocus placeholder="Ej. Enviar informe semanal" />
+        <input value={values.title} onChange={set('title')} maxLength={150} autoFocus />
       </label>
       <label className="field">
         <span>Descripción</span>
-        <textarea value={values.description} onChange={set('description')} rows={4} placeholder="Detalles, pasos o notas" />
+        <textarea value={values.description} onChange={set('description')} rows={4} />
       </label>
       <div className="field-row">
         <label className="field">
@@ -68,7 +68,7 @@ export default function TaskForm({ initial, onSubmit, onCancel }) {
       <div className="form-actions">
         <button type="button" className="btn btn-ghost" onClick={onCancel}>Cancelar</button>
         <button type="submit" className="btn btn-primary" disabled={saving}>
-          {saving ? 'Guardando…' : initial?.id ? 'Guardar cambios' : 'Crear tarea'}
+          {saving ? 'Guardando...' : initial?.id ? 'Guardar cambios' : 'Guardar'}
         </button>
       </div>
     </form>

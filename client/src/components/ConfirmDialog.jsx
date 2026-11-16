@@ -17,7 +17,7 @@ export default function ConfirmDialog({ title, message, confirmLabel = 'Eliminar
       <div className="form-actions">
         <button className="btn btn-ghost" onClick={onCancel}>Cancelar</button>
         <button className="btn btn-danger" onClick={confirm} disabled={busy}>
-          {busy ? 'Eliminando…' : confirmLabel}
+          {busy ? 'Eliminando...' : confirmLabel}
         </button>
       </div>
     </Modal>

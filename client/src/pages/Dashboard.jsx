@@ -44,15 +44,13 @@ export default function Dashboard() {
     <div className="app">
       <Header />
       <main className="container">
-        <section className="hero">
+        <div className="top-row">
           <div>
-            <h1>Hola, {firstName}</h1>
-            <p className="muted">
-              {loading ? 'Cargando tus tareas…' : `Tienes ${pending} ${pending === 1 ? 'tarea abierta' : 'tareas abiertas'} en esta vista.`}
-            </p>
+            <h1>Bienvenido/a, {firstName}</h1>
+            <p className="muted">{loading ? 'Cargando...' : `Tareas sin terminar: ${pending}`}</p>
           </div>
-          <button className="btn btn-primary" onClick={() => setEditing({})}>+ Nueva tarea</button>
-        </section>
+          <button className="btn btn-primary" onClick={() => setEditing({})}>+ Agregar tarea</button>
+        </div>
 
         <FilterBar
           search={search}

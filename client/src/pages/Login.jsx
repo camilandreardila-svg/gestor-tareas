@@ -43,7 +43,7 @@ export default function Login() {
         </label>
         {error && <p className="form-error" role="alert">{error}</p>}
         <button className="btn btn-primary btn-block" disabled={busy}>
-          {busy ? 'Ingresando…' : 'Ingresar'}
+          {busy ? 'Ingresando...' : 'Ingresar'}
         </button>
       </form>
     </AuthLayout>

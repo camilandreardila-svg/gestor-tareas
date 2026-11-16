@@ -5,45 +5,39 @@ export default function TaskCard({ task, onToggleComplete, onChangeStatus, onEdi
   const due = dueState(task);
 
   return (
-    <article className={`card priority-${task.priority} ${done ? 'is-done' : ''}`}>
-      <div className="card-top">
-        <button
-          className={`check ${done ? 'checked' : ''}`}
-          onClick={() => onToggleComplete(task)}
-          aria-label={done ? 'Marcar como pendiente' : 'Marcar como completada'}
-          title={done ? 'Marcar como pendiente' : 'Marcar como completada'}
-        >
-          {done ? '✓' : ''}
-        </button>
-        <h3 className="card-title">{task.title}</h3>
+    <div className={`task ${done ? 'done' : ''}`}>
+      <div className="task-head">
+        <label className="task-check">
+          <input
+            type="checkbox"
+            checked={done}
+            onChange={() => onToggleComplete(task)}
+            title={done ? 'Marcar como pendiente' : 'Marcar como completada'}
+          />
+          <span className="task-title">{task.title}</span>
+        </label>
+        <span className={`badge badge-${task.priority}`}>{PRIORITY[task.priority].label}</span>
       </div>
 
-      {task.description && <p className="card-desc">{task.description}</p>}
+      {task.description && <p className="task-desc">{task.description}</p>}
 
-      <div className="card-meta">
-        <span className={`chip chip-${task.priority}`}>Prioridad {PRIORITY[task.priority].label.toLowerCase()}</span>
-        <span className={`due ${due ? `due-${due}` : ''}`}>
-          {due === 'vencida' ? 'Vencida · ' : due === 'hoy' ? 'Vence hoy · ' : ''}
-          {formatDate(task.due_date)}
-        </span>
-      </div>
+      <p className={`task-date ${due || ''}`}>
+        📅 {formatDate(task.due_date)}
+        {due === 'vencida' && ' (vencida)'}
+        {due === 'hoy' && ' (hoy)'}
+      </p>
 
-      <div className="card-actions">
-        <select
-          value={task.status}
-          onChange={(e) => onChangeStatus(task, e.target.value)}
-          aria-label="Cambiar estado"
-          className="select-sm"
-        >
+      <div className="task-footer">
+        <select value={task.status} onChange={(e) => onChangeStatus(task, e.target.value)} aria-label="Estado">
           {STATUS_ORDER.map((k) => (
             <option key={k} value={k}>{STATUS[k].label}</option>
           ))}
         </select>
-        <div className="card-buttons">
-          <button className="btn btn-ghost btn-sm" onClick={() => onEdit(task)}>Editar</button>
-          <button className="btn btn-danger-ghost btn-sm" onClick={() => onDelete(task)}>Eliminar</button>
+        <div>
+          <button className="link-btn" onClick={() => onEdit(task)}>Editar</button>
+          <button className="link-btn red" onClick={() => onDelete(task)}>Eliminar</button>
         </div>
       </div>
-    </article>
+    </div>
   );
 }
