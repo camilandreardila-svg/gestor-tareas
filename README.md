@@ -2,6 +2,8 @@
 
 Proyecto de la actividad de desarrollo frontend. Es una aplicación web para registrar y organizar tareas, hecha con React.
 
+Demo: https://gestor-tareas-g5qn.onrender.com
+
 ## Funcionalidades
 
 - Registro e inicio de sesión de usuarios
