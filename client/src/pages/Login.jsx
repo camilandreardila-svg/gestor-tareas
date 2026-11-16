@@ -10,6 +10,7 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
+  const [showPass, setShowPass] = useState(false);
 
   if (user) return <Navigate to="/" replace />;
 
@@ -39,7 +40,10 @@ export default function Login() {
         </label>
         <label className="field">
           <span>Contraseña</span>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required autoComplete="current-password" />
+          <input type={showPass ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} required autoComplete="current-password" />
+        </label>
+        <label className="show-pass">
+          <input type="checkbox" checked={showPass} onChange={(e) => setShowPass(e.target.checked)} /> Mostrar contraseña
         </label>
         {error && <p className="form-error" role="alert">{error}</p>}
         <button className="btn btn-primary btn-block" disabled={busy}>
