@@ -4,6 +4,8 @@ Proyecto de la actividad de desarrollo frontend. Es una aplicación web para reg
 
 Demo: https://gestor-tareas-g5qn.onrender.com
 
+![Tablero de tareas](docs/captura.png)
+
 ## Funcionalidades
 
 - Registro e inicio de sesión de usuarios
@@ -12,6 +14,7 @@ Demo: https://gestor-tareas-g5qn.onrender.com
 - Editar y eliminar tareas
 - Marcar tareas como completadas
 - Buscar por título o descripción y filtrar por estado o prioridad
+- Ordenar por fecha, prioridad, más recientes o título
 
 ## Tecnologías
 
