@@ -8,12 +8,14 @@ import ConfirmDialog from '../components/ConfirmDialog.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 import { useTasks } from '../hooks/useTasks.js';
 import { useDebounce } from '../hooks/useDebounce.js';
+import { sortTasks } from '../utils/format.js';
 
 export default function Dashboard() {
   const { user } = useAuth();
   const [search, setSearch] = useState('');
   const [status, setStatus] = useState('');
   const [priority, setPriority] = useState('');
+  const [sortBy, setSortBy] = useState('fecha');
   const q = useDebounce(search);
 
   const { tasks, loading, error, createTask, updateTask, deleteTask } = useTasks({ q, status, priority });
@@ -59,6 +61,8 @@ export default function Dashboard() {
           onStatus={setStatus}
           priority={priority}
           onPriority={setPriority}
+          sortBy={sortBy}
+          onSort={setSortBy}
           onClear={() => {
             setSearch('');
             setStatus('');
@@ -73,7 +77,7 @@ export default function Dashboard() {
         )}
 
         <TaskBoard
-          tasks={tasks}
+          tasks={sortTasks(tasks, sortBy)}
           statusFilter={status}
           onToggleComplete={(t) =>
             run(() => updateTask(t.id, { status: t.status === 'completada' ? 'pendiente' : 'completada' }))
