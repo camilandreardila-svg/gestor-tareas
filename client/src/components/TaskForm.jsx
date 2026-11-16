@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PRIORITY, STATUS, STATUS_ORDER } from '../utils/format.js';
+import { PRIORITY, STATUS, STATUS_ORDER, todayISO } from '../utils/format.js';
 
 const EMPTY = { title: '', description: '', due_date: '', priority: 'media', status: 'pendiente' };
 
@@ -15,6 +15,10 @@ export default function TaskForm({ initial, onSubmit, onCancel }) {
     e.preventDefault();
     if (!values.title.trim()) {
       setError('El título es obligatorio.');
+      return;
+    }
+    if (!initial?.id && values.due_date && values.due_date < todayISO()) {
+      setError('La fecha de vencimiento no puede ser anterior a hoy.');
       return;
     }
     setSaving(true);
@@ -45,7 +49,7 @@ export default function TaskForm({ initial, onSubmit, onCancel }) {
       <div className="field-row">
         <label className="field">
           <span>Fecha de vencimiento</span>
-          <input type="date" value={values.due_date} onChange={set('due_date')} />
+          <input type="date" value={values.due_date} onChange={set('due_date')} min={initial?.id ? undefined : todayISO()} />
         </label>
         <label className="field">
           <span>Prioridad</span>
